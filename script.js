@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(nextSlide, 5000); // Automatically switch slides every 5 seconds
 });
 
-document.getElementById('contactForm').addEventListener('submit', function(event) {
+/* document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -191,4 +191,21 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     } else {
         formMessage.textContent = 'Please fill out all fields.';
     }
+}); */
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const formData = new FormData(this);
+
+    fetch('send_email.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('formMessage').innerText = data;
+    })
+    .catch(error => {
+        document.getElementById('formMessage').innerText = 'An error occurred: ' + error;
+    });
 });

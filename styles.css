@@ -432,7 +432,7 @@ nav {
     /* background: url('img/back3.jpg') no-repeat center center; /* Background image */
     background-size: cover; /* Ensure the image covers the section */
     padding: 0 20px;
-    background-color: rgba(23, 58, 58, 0.842);
+    background-color: rgba(0, 150, 136, 0.8);
     background-blend-mode: multiply; /* Blend mode to darken background */
     color: #fff;
     text-align: center;
@@ -455,7 +455,7 @@ nav {
 .testimonial-name {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #00d084; /* Gold color */
+    color: #fff; /* Gold color */
 }
 
 .rating {
@@ -463,13 +463,13 @@ nav {
 }
 
 .rating i {
-    color: #FFD700; /* Gold color for stars */
+    color: #FFD54F; /* Gold color for stars */
     font-size: 24px;
 }
 
 .testimonial-line {
     border: 0;
-    border-top: 2px solid #0693e3; /* Gold line */
+    border-top: 2px solid #333; /* Gold line */
     margin: 20px auto;
     width: 50%;
 }
@@ -483,7 +483,7 @@ nav {
     display: block;
     margin: 20px auto;
     font-size: 18px;
-    color: #00d084; /* Gold color */
+    color: #fff; /* Gold color */
 }
 
 .testimonial-button {
@@ -599,7 +599,7 @@ nav {
 /* footer page */
 .footer-section {
     padding: 70px 20px;
-    background-color: #475c72;
+    background-color: #333;
     text-align: center;
     border-bottom: 1px #0693e3;
 }
