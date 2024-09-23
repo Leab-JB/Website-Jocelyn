@@ -209,3 +209,64 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         document.getElementById('formMessage').innerText = 'An error occurred: ' + error;
     });
 });
+
+
+// modal for history
+document.getElementById('schedule-button').addEventListener('click', function() {
+    document.getElementById('calendar-modal').style.display = 'block';
+});
+
+document.getElementById('close-button').addEventListener('click', function() {
+    document.getElementById('calendar-modal').style.display = 'none';
+});
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('calendar-modal')) {
+        document.getElementById('calendar-modal').style.display = 'none';
+    }
+};
+document.getElementById('confirm-button').addEventListener('click', function() {
+    const appointmentDate = document.getElementById('appointment-date').value;
+    const appointmentTime = document.getElementById('appointment-time').value;
+    const clientName = document.getElementById('client-name').value;
+    const clientEmail = document.getElementById('client-email').value;
+
+    if (appointmentDate && appointmentTime && clientName && clientEmail) {
+        const appointmentDateTime = `${appointmentDate} ${appointmentTime}`;
+        alert(`Votre rendez-vous est confirmé pour ${appointmentDateTime}.\nNom: ${clientName}\nEmail: ${clientEmail}`);
+        document.getElementById('calendar-modal').style.display = 'none';
+    } else {
+        alert('Veuillez remplir tous les champs.');
+    }
+});
+
+//js for appointement
+document.getElementById('confirm-button').addEventListener('click', function() {
+    const appointmentDate = document.getElementById('appointment-date').value;
+    const appointmentTime = document.getElementById('appointment-time').value;
+    const clientName = document.getElementById('client-name').value;
+    const clientEmail = document.getElementById('client-email').value;
+
+    if (appointmentDate && appointmentTime && clientName && clientEmail) {
+        const appointmentDateTime = `${appointmentDate} ${appointmentTime}`;
+
+        // Use Fetch API to send data to the PHP script
+        fetch('send_appointment.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `client-name=${encodeURIComponent(clientName)}&client-email=${encodeURIComponent(clientEmail)}&appointment-date=${encodeURIComponent(appointmentDate)}&appointment-time=${encodeURIComponent(appointmentTime)}`
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+            document.getElementById('calendar-modal').style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    } else {
+        alert('Veuillez remplir tous les champs.');
+    }
+});
