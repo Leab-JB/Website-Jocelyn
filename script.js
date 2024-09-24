@@ -192,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formMessage.textContent = 'Please fill out all fields.';
     }
 }); */
+
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -225,7 +226,7 @@ window.onclick = function(event) {
         document.getElementById('calendar-modal').style.display = 'none';
     }
 };
-document.getElementById('confirm-button').addEventListener('click', function() {
+/* document.getElementById('confirm-button').addEventListener('click', function() {
     const appointmentDate = document.getElementById('appointment-date').value;
     const appointmentTime = document.getElementById('appointment-time').value;
     const clientName = document.getElementById('client-name').value;
@@ -238,16 +239,46 @@ document.getElementById('confirm-button').addEventListener('click', function() {
     } else {
         alert('Veuillez remplir tous les champs.');
     }
+}); */
+
+// Open modal
+document.getElementById('your-open-button-id').addEventListener('click', function() {
+    const modal = document.getElementById('calendar-modal');
+    modal.style.display = 'block';
+    setTimeout(() => {
+        modal.classList.add('show'); // Add class for animation
+    }, 10); // Short delay to allow the display to be set
 });
 
+// Close modal
+document.getElementById('close-button').addEventListener('click', function() {
+    const modal = document.getElementById('calendar-modal');
+    modal.classList.remove('show'); // Remove class for animation
+    setTimeout(() => {
+        modal.style.display = 'none'; // Hide after animation
+    }, 500); // Match the duration of the animation
+});
+
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById('calendar-modal');
+    if (event.target === modal) {
+        modal.classList.remove('show'); // Remove class for animation
+        setTimeout(() => {
+            modal.style.display = 'none'; // Hide after animation
+        }, 500); // Match the duration of the animation
+    }
+};
 //js for appointement
 document.getElementById('confirm-button').addEventListener('click', function() {
     const appointmentDate = document.getElementById('appointment-date').value;
     const appointmentTime = document.getElementById('appointment-time').value;
     const clientName = document.getElementById('client-name').value;
     const clientEmail = document.getElementById('client-email').value;
+    const clientPhone = document.getElementById('client-phone').value; // New field
+    const clientMessage = document.getElementById('client-message').value; // New field
 
-    if (appointmentDate && appointmentTime && clientName && clientEmail) {
+    if (appointmentDate && appointmentTime && clientName && clientEmail && clientPhone && clientMessage) {
         const appointmentDateTime = `${appointmentDate} ${appointmentTime}`;
 
         // Use Fetch API to send data to the PHP script
@@ -256,7 +287,7 @@ document.getElementById('confirm-button').addEventListener('click', function() {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: `client-name=${encodeURIComponent(clientName)}&client-email=${encodeURIComponent(clientEmail)}&appointment-date=${encodeURIComponent(appointmentDate)}&appointment-time=${encodeURIComponent(appointmentTime)}`
+            body: `client-name=${encodeURIComponent(clientName)}&client-email=${encodeURIComponent(clientEmail)}&client-phone=${encodeURIComponent(clientPhone)}&appointment-date=${encodeURIComponent(appointmentDate)}&appointment-time=${encodeURIComponent(appointmentTime)}&client-message=${encodeURIComponent(clientMessage)}`
         })
         .then(response => response.text())
         .then(data => {
