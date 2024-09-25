@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port       = 587;
 
         // Recipients
-        $mail->setFrom('jleablue2@gmail.com', 'Yvanie Noelle'); // Your name
+        $mail->setFrom('jleablue2@gmail.com', 'noreply email test'); // Your name
         $mail->addAddress('jleablue2@gmail.com'); // Recipient's email
 
         // Content
@@ -48,8 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Body    = 'Name: ' . htmlspecialchars(trim($_POST['name'])) . '<br>' .
                          'Email: ' . htmlspecialchars(trim($_POST['email'])) . '<br>' .
                          'Message: ' . nl2br(htmlspecialchars(trim($_POST['message'])));
+            
 
         $mail->send();
+       
         echo 'Message has been sent';
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
