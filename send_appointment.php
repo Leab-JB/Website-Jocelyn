@@ -12,8 +12,10 @@ require 'PHPMailer/src/SMTP.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $clientName = $_POST['client-name'];
     $clientEmail = $_POST['client-email'];
+    $clientPhone = $_POST['client-phone']; // Retrieve client phone
     $appointmentDate = $_POST['appointment-date'];
     $appointmentTime = $_POST['appointment-time'];
+    $clientMessage = $_POST['client-message']; // Retrieve client message
 
     $appointmentDateTime = "$appointmentDate $appointmentTime";
 
@@ -39,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <ul>
             <li><strong>Nom:</strong> $clientName</li>
             <li><strong>Email:</strong> $clientEmail</li>
-            <li><strong>Date et Heure:</strong> $appointmentDateTime</li>
             <li><strong>Téléphone:</strong> $clientPhone</li>
-        <li><strong>Message:</strong> " . nl2br(htmlspecialchars($clientMessage)) . "</li>
+            <li><strong>Date et Heure:</strong> $appointmentDateTime</li>
+            <li><strong>Message:</strong> " . nl2br(htmlspecialchars($clientMessage)) . "</li>
         </ul>
         <p>Thank you!</p>";
 

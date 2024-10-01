@@ -116,43 +116,49 @@ nav {
     box-sizing: border-box;
 }
 /* Hero content styling */
+.hero {
+    margin-top: 100px; /* Add margin to account for the fixed navbar height */
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    background-color: rgba(51, 51, 51, 0.5); /* Semi-transparent background color */
+    background-image: url('img/scale_img_about_me.png');
+    background-size: cover;
+    background-position: 1px 50px; /* Push image down */
+    background-repeat: no-repeat;
+ 
+}
+/* Hero content styling */
 .hero-content {
     position: relative;
-    z-index: 2;
     width: 40%; /* Set width to 60% of the hero section */
     max-width: 800px; /* Set a maximum width to prevent it from becoming too wide */
     padding: 0 20px;
-    margin: 0 auto; /* Center the content horizontally */
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; 
+    gap: 0;
 }
-
 .hero h1 {
-    font-size: 50px; /* Adjust font size for visibility */
+    font-size: 50px; /* Adjust as needed */
+    margin-bottom: 5px; /* Remove default margin */
 }
-
 .typing-container {
     font-size: 50px;
     white-space: nowrap;
     overflow: hidden;
     color: #0693e3; /* Text color */
-    height: 100%; /* Height for the container */
-    position: relative;
-    display: inline-block;
+    height: 50px; /* Height for the container */
+    display: flex;
+    align-items: center; 
     border-right: 2px solid #0693e3; /* Blinking cursor */
     animation: blink-caret 0.7s step-end infinite; /* Blinking caret effect */
+    line-height: 50px;
 }
 
-/* Adjust cursor position closer to the text */
-.typing-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 2px; /* Match the border width */
-    height: 100%;
-    background-color: #0693e3; /* Match the cursor color */
-    animation: blink-caret 0.7s step-end infinite; /* Blinking effect */
-}
 
 /* Blinking cursor effect */
 @keyframes blink-caret {
@@ -179,6 +185,10 @@ nav {
 .info-heading{
     text-align:center;
     font-size: 35px;
+}
+.info-paragraph{
+    padding-left: 120px;
+    padding-right: 100px;
 }
 
 /* Centered Title and Description */
@@ -293,6 +303,7 @@ nav {
 .history-section {
     position: relative;
     height: 100vh; /* Full viewport height */
+    background-color:rgba(51, 51, 51, 0.5);
     background-image: url('img/img_about_me_2.png'); /* Replace with your background image */
     background-size: cover; /* Ensure the image covers the section */
     background-position: right center; /* Focus on the right side where the person is */
@@ -621,7 +632,7 @@ nav {
 /* contact section */
 .contact-section {
     padding: 70px 20px;
-    background: #fff;
+    background: #f9f9f9;
     text-align: center;
 }
 
