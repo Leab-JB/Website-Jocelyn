@@ -51,58 +51,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 // For the typing and wiping effect, we need to add some JavaScript to handle the timing and looping
-const texts = ["Welcome to My Website", "We offer great services", "Contact us for more info"];
-let textIndex = 0;
-let charIndex = 0;
-const typingSpeed = 100; // Speed of typing in milliseconds
-const pauseBeforeSelect = 1000; // Pause before selecting text
-const pauseBeforeWiping = 1000; // Pause before wiping text
-const wipeSpeed = 50; // Speed of wiping in milliseconds
+const texts = ["Investissez maintenant", "À votre écoute", "Solutions rapides"];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typingSpeed = 120; // Speed of typing in milliseconds
+        const pauseBeforeSelect = 1000; // Pause before selecting text
+        const pauseBeforeWiping = 1000; // Pause before wiping text
+        const wipeSpeed = 50; // Speed of wiping in milliseconds
 
-const typingTextElement = document.getElementById('typing-text');
+        const pauseBeforeTyping = 1000; // Pause before starting to type new text
 
-function typeText() {
-    if (charIndex < texts[textIndex].length) {
-        typingTextElement.textContent += texts[textIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(typeText, typingSpeed);
-    } else {
-        setTimeout(selectText, pauseBeforeSelect);
-    }
-}
+        const typingTextElement = document.getElementById('typing-text');
+        
+        function typeText() {
+            if (charIndex < texts[textIndex].length) {
+                typingTextElement.textContent += texts[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeText, typingSpeed);
+            } else {
+                setTimeout(selectText, pauseBeforeSelect);
+            }
+        }
 
-function selectText() {
-    typingTextElement.innerHTML = texts[textIndex]
-        .split('')
-        .map(char => `<span class="selected-text">${char}</span>`)
-        .join('');
-    setTimeout(wipeText, pauseBeforeWiping);
-}
-
-function wipeText() {
-    const spans = typingTextElement.querySelectorAll('span');
-    let index = 0; // Start from the beginning of the spans
-
-    function wipe() {
-        if (index < spans.length) {
-            spans[index].style.color = '#333'; // Change text color to simulate wiping
-            index++;
-            setTimeout(wipe, wipeSpeed);
-        } else {
+        function selectText() {
+            typingTextElement.innerHTML = texts[textIndex]
+                .split('')
+                .map(char => `<span class="selected-text">${char}</span>`)
+                .join('');
+            setTimeout(wipeText, pauseBeforeWiping);
+        }
+        
+        function wipeText() {
+            // Clear the text content all at once
+            typingTextElement.textContent = ''; // Clear the text content
             textIndex = (textIndex + 1) % texts.length; // Loop through texts
             charIndex = 0; // Reset charIndex for new text
-            typingTextElement.textContent = ''; // Clear the text content
+            setTimeout(startTyping, pauseBeforeTyping); // Wait before starting to type
+        }
+        
+        function startTyping() {
             setTimeout(typeText, typingSpeed); // Start typing new text
         }
-    }
-
-    wipe();
-}
-
-// Start typing effect when the page loads
-window.onload = () => {
-    typeText();
-};
+        
+        // Start typing effect when the page loads
+        window.onload = () => {
+            typeText();
+        };
 
 document.addEventListener('DOMContentLoaded', () => {
     const counters = document.querySelectorAll('.counter-item');
@@ -178,20 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(nextSlide, 5000); // Automatically switch slides every 5 seconds
 });
 
-/* document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    const formMessage = document.getElementById('formMessage');
 
-    if (name && email && message) {
-        formMessage.textContent = 'Thank you for your message!';
-        formMessage.style.color = 'green';
-    } else {
-        formMessage.textContent = 'Please fill out all fields.';
-    }
-}); */
 
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -242,13 +223,13 @@ window.onclick = function(event) {
 }); */
 
 // Open modal
-document.getElementById('your-open-button-id').addEventListener('click', function() {
+/* document.getElementById('your-open-button-id').addEventListener('click', function() {
     const modal = document.getElementById('calendar-modal');
     modal.style.display = 'block';
     setTimeout(() => {
         modal.classList.add('show'); // Add class for animation
     }, 10); // Short delay to allow the display to be set
-});
+}); */
 
 // Close modal
 document.getElementById('close-button').addEventListener('click', function() {
@@ -301,3 +282,4 @@ document.getElementById('confirm-button').addEventListener('click', function() {
         alert('Veuillez remplir tous les champs.');
     }
 });
+
