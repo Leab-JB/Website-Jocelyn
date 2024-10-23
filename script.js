@@ -51,7 +51,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 // For the typing and wiping effect, we need to add some JavaScript to handle the timing and looping
-const texts = ["Investissez maintenant", "À votre écoute", "Solutions rapides"];
+var texts = [];
+var elements = document.querySelectorAll('[lang]');
+elements.forEach(function(element) {
+    if (element.getAttribute('lang') === "fr") {
+        texts = ["Investissez maintenant", "À votre écoute", "Solutions rapides"];
+    } else if(element.getAttribute('lang') === "en") {
+        texts = ["Invest now", "At your service", "Quick solutions"];
+    }else{
+        texts = ["Investieren Sie jetzt", "Wir hören Ihnen zu", "Schnelle Lösungen"];
+    }
+});
+
         let textIndex = 0;
         let charIndex = 0;
         const typingSpeed = 120; // Speed of typing in milliseconds
